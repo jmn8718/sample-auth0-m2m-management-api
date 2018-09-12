@@ -1,4 +1,4 @@
-# sample-aut0-m2m-management-api
+# sample-auth0-m2m-management-api
 Implements how to connect a server with Auth0 APIs. In this repo we are connecting with [Auth0 Management API](#auth0-management-api).
 This is an example of connection to the API with test purposes, so I am not securing the endpoint. If you want to use it, you should secure the endpoints, so only authenticated users can access to the resources.
 
