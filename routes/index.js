@@ -25,4 +25,24 @@ router.get('/logs', async function(req, res, next) {
   return res.json(data);
 });
 
+router.get('/logs/:id', async function(req, res, next) {
+  const { query, params } = req;
+  let data = await auth0.authorizedRequestToAuth0(`/api/v2/logs/${params.id}`, 'GET', {
+    qs: query
+  });
+  return res.json(data);
+});
+
+router.get('/users-by-email', async function(req, res, next) {
+  const { query } = req;
+  try {
+    let data = await auth0.authorizedRequestToAuth0('/api/v2/users-by-email', 'GET', {
+      qs: query
+    });
+    return res.json(data);
+  } catch(error) {
+    return res.json(error.error ? error.error : error);
+  }
+});
+
 module.exports = router;
