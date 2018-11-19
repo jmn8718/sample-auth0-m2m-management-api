@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  nginx:
+    image: nginx:1.13.8-alpine
+    volumes:
+      - ./nginx:/etc/nginx
+    depends_on:
+      - node
+    ports:
+      - "5000:80"
+    restart: always
+    networks: 
+      - noden
+  node:
+    image: m2m
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3003:3003
+    networks: 
+      - noden
+    volumes:
+      - /app/node_modules
+      - .:/usr/src/app
+
+networks:
+  noden:
